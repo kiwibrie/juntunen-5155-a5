@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Inventory -- Item
+
+class SceneManager {
+
+}
+
+class Inventory {
+
+addItem
+deleteItem
+
+
+}
+
+class Item {
+- name : String
+- serialnumber : String
+- value : double
+
++ Item(name, serialnumber, value)
+setName()
++ getName()
+setSerialNumber()
++ getSerialNumber()
+setValue()
++ getValue()
+}
+
+@enduml
