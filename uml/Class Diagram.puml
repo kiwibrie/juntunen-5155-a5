@@ -7,10 +7,6 @@ EditSelectedItemClicked = make visible
 SaveChanges = make invisible
 end note
 
-note right of java.Item::value
-I'm not sure what type to make this
-end note
-
 class java.InventoryManager {
 + main()
 + start()
@@ -18,12 +14,12 @@ class java.InventoryManager {
 
 class java.SceneManager {
 - scene : Map<String, String>
-+ initializeManager()
++ SceneManager()
 + loadScene(key) : Scene
 }
 
 class java.SceneController {
---<b>Primary Scene--
+--<b>Main Scene--
 --Menu Bar--
 + CloseApp : MenuItem
 + SaveInventory : MenuItem
@@ -76,9 +72,10 @@ class java.SceneController {
 class java.Inventory {
 inventory : List<Item>
 --Methods--
++ Inventory()
 + addItem()
 + getItem() : Item
-+ deleteItem()
++ deleteItem(Item)
 ..Search..
 + searchByName(name) : List<Item>
 + searchBySerial(serialnumber) : Item
@@ -94,7 +91,7 @@ inventory : List<Item>
 class java.Item {
 - name : String
 - serialnumber : String
-- value : double?
+- value : BigDecimal
 ..Constructors..
 + Item(name, serialnumber, value)
 + setName(name)
@@ -102,11 +99,10 @@ class java.Item {
 + setSerialNumber(serialnumber)
 + getSerialNumber() : String
 + setValue(value)
-+ getValue() : double?
++ getValue() : BigDecimal
 ..Validators..
-- validateName(name) : boolean
+- validName(name) : boolean
 - validSerialNumber(serialnumber) : boolean
-- validValue(value) : boolean
 }
 
 namespace java {
@@ -117,9 +113,9 @@ SceneController -- Inventory
 }
 
 namespace resources {
-java.SceneController -- PrimaryScene
+java.SceneController -- MainScene
 java.SceneController -- ErrorScene
-java.SceneManager -- PrimaryScene
+java.SceneManager -- MainScene
 java.SceneManager -- ErrorScene
 }
 
