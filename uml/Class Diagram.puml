@@ -110,7 +110,7 @@ class java.Item {
 }
 
 namespace java {
-Inventory o-- Item
+Inventory *-- Item
 InventoryManager -- SceneManager
 SceneManager -- SceneController
 SceneController -- Inventory
