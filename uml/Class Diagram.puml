@@ -3,7 +3,7 @@
 
 note left of java.SceneController::EditTab
 tab that :
-EditSelectedItem = make visible
+EditSelectedItemClicked = make visible
 SaveChanges = make invisible
 end note
 
@@ -61,6 +61,12 @@ class java.SceneController {
 + InventoryViewer : TableView<Item>
 ..
 + UpdateInventory()
+..<i>Button Bar..
++ EditSelectedItem
++ DeleteSelectedItem
+..
++ EditSelectedItemClicked()
++ DeleteSelectedItemClicked()
 --<b>Error Scene--
 + OKButton : Button
 ..
