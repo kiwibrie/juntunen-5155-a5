@@ -8,6 +8,8 @@ package ucf.assignments;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class InventoryManager extends Application {
 
     public static void main(String[] args) {
@@ -16,6 +18,13 @@ public class InventoryManager extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
+        try{
+            InventoryManagerScene scene = new InventoryManagerScene();
+            Stage stage = new Stage();
+            scene.sceneManager.loadScene(stage, "InventoryManager");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

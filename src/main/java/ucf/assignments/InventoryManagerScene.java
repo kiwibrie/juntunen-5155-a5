@@ -93,7 +93,7 @@ public class InventoryManagerScene {
         Platform.exit();
     }
 
-    //---------------------------------------------------------------------------- EDIT MENU todo
+    //---------------------------------------------------------------------------- EDIT MENU
     @FXML public MenuItem EditSelectedMenuItem;
     @FXML public MenuItem DeleteSelectedMenuItem;
 
@@ -122,7 +122,7 @@ public class InventoryManagerScene {
         updateTableView(inventory.inventoryList);
     }
 
-    //---------------------------------------------------------------------------- ADD ITEM TAB todo
+    //---------------------------------------------------------------------------- ADD ITEM TAB
     @FXML public Tab NewItemTab;
     @FXML public Button AddItemButton;
     @FXML public TextField AddSerialTextBox;
@@ -130,18 +130,39 @@ public class InventoryManagerScene {
     @FXML public TextField AddPriceTextBox;
 
     @FXML public void AddItemClicked(ActionEvent actionEvent){
-        //add item function call
+        try{
+            addItemConfirmed();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addItemConfirmed(){
-        //get serial number from textbox
-        //get item name from textbox
-        //get price from textbox
-        //add item to inventory list
-        //update tableview
+    public void addItemConfirmed() throws IOException {
+        String serial = AddSerialTextBox.getText();
+        String name = AddNameTextBox.getText();
+        double value = Double.parseDouble(AddPriceTextBox.getText());
+        Item item = new Item(name, serial, value);
+
+        if(!item.getSerialNumber().equals(serial)){
+            Stage stage = new Stage();
+            sceneManager.loadScene(stage, "Serial Number Error");
+            stage.show();
+        }
+        if(!item.getName().equals(name)){
+            Stage stage = new Stage();
+            sceneManager.loadScene(stage, "Item Name Error");
+            stage.show();
+        }
+        if(item.getValue() != value){
+            Stage stage = new Stage();
+            sceneManager.loadScene(stage, "Item Price Error");
+            stage.show();
+        }
+
+        updateTableView(inventory.inventoryList);
     }
 
-    //---------------------------------------------------------------------------- EDIT ITEM TAB todo
+    //---------------------------------------------------------------------------- EDIT ITEM TAB
     @FXML public Tab EditItemTab;
     @FXML public Button EditItemButton;
     @FXML public TextField EditSerialTextBox;
