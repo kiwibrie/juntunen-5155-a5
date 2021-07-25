@@ -1,5 +1,5 @@
 # Inventory Manager - Assignment 5
-### UCF COP 3330 Summer 2021 with Hollander
+UCF COP 3330 Summer 2021 with Hollander
 
 ## Requirements of the program
 1. The user shall interact with the application through a Graphical User Interface
@@ -34,7 +34,7 @@
     - The user shall provide the file name and file location of the file to load
     
 
-#How to use the program
+###How to use the program
 
 **To add an inventory item:**
 
