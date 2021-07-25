@@ -1,8 +1,7 @@
 # Inventory Manager - Assignment 5
 UCF COP 3330 Summer 2021 with Hollander
 
-![A picture of Venti from Genshin Impact whispering and winking. 
-This is kiwibrie's profile photo as of 25 July 2021.](https://github.com/kiwibrie/juntunen-5155-a5/blob/master/src/main/resources/ucf/assignments/venti.jpg "Ehe!")
+<img alt="kiwibrie's pfp as of 25 July 2021" title ="Ehe!" src="https://github.com/kiwibrie/juntunen-5155-a5/blob/master/src/main/resources/ucf/assignments/venti.jpg" width="100" height="100" />
 
 ## Requirements of the program
 1. The user shall interact with the application through a Graphical User Interface
