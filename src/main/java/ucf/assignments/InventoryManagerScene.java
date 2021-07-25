@@ -9,10 +9,19 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class InventoryManagerScene {
+    SceneManager sceneManager;
+    Inventory inventory;
+
+    public InventoryManagerScene(){
+        this.inventory = new Inventory();
+        sceneManager = new SceneManager();
+    }
 
     //---------------------------------------------------------------------------- FILE MENU todo
     @FXML public MenuItem SaveTSV;
@@ -89,25 +98,28 @@ public class InventoryManagerScene {
     @FXML public MenuItem DeleteSelectedMenuItem;
 
     @FXML public void EditSelectedClicked(ActionEvent actionEvent){
-        //editselected function call
+        editSelectedItem();
     }
 
     public void editSelectedItem(){
-        //fill serial number textbox
-        //fill item name textbox
-        //fill price textbox
-        //delete old item
-        //make edit tab visible
+        int this_index = InventoryTable.getSelectionModel().getSelectedIndex();
+
+        EditSerialTextBox.setText(inventory.inventoryList.get(this_index).getSerialNumber());
+        EditNameTextBox.setText(inventory.inventoryList.get(this_index).getName());
+        EditPriceTextBox.setText(String.valueOf(inventory.inventoryList.get(this_index).getValue()));
+
+        inventory.inventoryList.remove(this_index);
+        EditItemTab.setDisable(false);
     }
 
     @FXML public void DeleteSelectedClicked(ActionEvent actionEvent){
-        //deleteselected function call
+        deleteSelectedItem();
     }
 
     public void deleteSelectedItem(){
-        //search for item
-        //delete item
-        //update tableview
+        int this_index = InventoryTable.getSelectionModel().getSelectedIndex();
+        inventory.deleteItem(inventory.inventoryList.get(this_index));
+        updateTableView(inventory.inventoryList);
     }
 
     //---------------------------------------------------------------------------- ADD ITEM TAB todo
@@ -137,16 +149,37 @@ public class InventoryManagerScene {
     @FXML public TextField EditPriceTextBox;
 
     @FXML public void EditItemClicked(ActionEvent actionEvent){
-        //edititem function call
+        try{
+            editItemConfirmed();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void editItemConfirmed(){
-        //get serial number from textbox
-        //get item name from textbox
-        //get price from textbox
-        //add item to inventory list
-        //update tableview
-        //then make the edit tab invisible
+    public void editItemConfirmed() throws IOException {
+        String serial = EditSerialTextBox.getText();
+        String name = EditNameTextBox.getText();
+        double value = Double.parseDouble(EditPriceTextBox.getText());
+        Item item = new Item(name, serial, value);
+
+        if(!item.getSerialNumber().equals(serial)){
+            Stage stage = new Stage();
+            sceneManager.loadScene(stage, "Serial Number Error");
+            stage.show();
+        }
+        if(!item.getName().equals(name)){
+            Stage stage = new Stage();
+            sceneManager.loadScene(stage, "Item Name Error");
+            stage.show();
+        }
+        if(item.getValue() != value){
+            Stage stage = new Stage();
+            sceneManager.loadScene(stage, "Item Price Error");
+            stage.show();
+        }
+
+        updateTableView(inventory.inventoryList);
+        EditItemTab.setDisable(true);
     }
 
     //---------------------------------------------------------------------------- SEARCH TAB todo

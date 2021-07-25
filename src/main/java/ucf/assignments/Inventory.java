@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    List<Item> inventory;
+    List<Item> inventoryList;
 
     public Inventory(){
-        this.inventory = new ArrayList<>();
+        this.inventoryList = new ArrayList<>();
     }
 
     public void addItem(String name, String serial, double value){
-        inventory.add(new Item(name, serial, value));
+        inventoryList.add(new Item(name, serial, value));
     }
 
     //todo getItem? getItemByName
@@ -24,12 +24,12 @@ public class Inventory {
     //getItemByIndex
 
     public void deleteItem(Item item){
-        inventory.remove(item);
+        inventoryList.remove(item);
     }
 
     public List<Item> searchByName(String name){
         List<Item> list = new ArrayList<>();
-        for (Item item : inventory) {
+        for (Item item : inventoryList) {
             if (item.getName().equals(name)) {
                 list.add(item);
             }
@@ -39,7 +39,7 @@ public class Inventory {
 
     public List<Item> searchBySerial(String serial){
         List<Item> list = new ArrayList<>();
-        for (Item item : inventory) {
+        for (Item item : inventoryList) {
             if (item.getSerialNumber().equals(serial)) {
                 list.add(item);
             }
