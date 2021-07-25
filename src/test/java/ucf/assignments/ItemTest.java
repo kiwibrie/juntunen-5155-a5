@@ -104,21 +104,21 @@ class ItemTest {
     void setValueEasy() {
         Item item = new Item("New Item", "0123456789", 10.99);
         item.setValue(4.99);
-        assertEquals(4.99, item.value);
-        assertNotEquals(10.99, item.value);
+        assertEquals("$4.99", item.value);
+        assertNotEquals("$10.99", item.value);
     }
 
     @Test
     void getValueBase() {
         Item item = new Item("New Item", "0123456789", 10.99);
-        assertEquals(10.99, item.getValue());
+        assertEquals("$10.99", item.getValue());
     }
 
     @Test
     void getValueAfterChange() {
         Item item = new Item("New Item", "0123456789", 10.99);
         item.setValue(2);
-        assertEquals(2.0, item.getValue());
-        assertNotEquals(10.99, item.getValue());
+        assertEquals("$2.00", item.getValue());
+        assertNotEquals("$10.99", item.getValue());
     }
 }
