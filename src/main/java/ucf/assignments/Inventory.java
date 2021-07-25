@@ -30,7 +30,7 @@ public class Inventory {
     public List<Item> searchByName(String name){
         List<Item> list = new ArrayList<>();
         for (Item item : inventoryList) {
-            if (item.getName().equals(name)) {
+            if (item.getName().contains(name)) {
                 list.add(item);
             }
         }
@@ -40,7 +40,7 @@ public class Inventory {
     public List<Item> searchBySerial(String serial){
         List<Item> list = new ArrayList<>();
         for (Item item : inventoryList) {
-            if (item.getSerialNumber().equals(serial)) {
+            if (item.getSerialNumber().contains(serial)) {
                 list.add(item);
             }
         }
