@@ -6,7 +6,6 @@ package ucf.assignments;
  */
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,8 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.List;
 
 public class InventoryManagerScene {
@@ -235,7 +232,7 @@ public class InventoryManagerScene {
         SearchSerialRadio.setSelected(false);
     }
 
-    //---------------------------------------------------------------------------- INVENTORY TABLE todo
+    //---------------------------------------------------------------------------- INVENTORY TABLE
     @FXML TableView<Item> InventoryTable;
     @FXML TableColumn<String, String> SerialNumberColumn;
     @FXML TableColumn<String, String> ItemNameColumn;
