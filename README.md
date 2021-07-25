@@ -34,36 +34,37 @@
     - The user shall provide the file name and file location of the file to load
     
 ##How to use the program
-> To add an inventory item:
+
+**To add an inventory item:**
 
 In the `New Item` tab, fill out the `serial number`, `item name`, and `price` text boxes and click the 
 `Add Item` button on the right.
 
-*If an error occurs, read the error text and adjust your input accordingly.*
+>If an error occurs, read the error text and adjust your input accordingly.*
 
-> To remove an inventory item:
+**To remove an inventory item:**
 
 Select the item you wish to remove in the `Inventory Table`, then navigate to the `Edit` Menu in the 
 top left of your window. From the dropdown, select `Delete Selected Item`.
 
-> To edit the values of an existing inventory item:
+**To edit the values of an existing inventory item:**
 
 Select the item you wish to edit in the `Inventory Table`, then navigate to the `Edit` Menu in the 
 top left of your window. From the dropdown, select `Edit Selected Item`. Change your current tab to
 the now available `Edit Item` tab. Modify the values you wish to edit, then click the `Edit Item`
 button on the right.
 
-*If an error occurs, read the error text and adjust your input accordingly.*
+>If an error occurs, read the error text and adjust your input accordingly.*
 
-> To sort the items in the inventory
+**To sort the items in the inventory:**
 
 Click the header of the value you wish to sort by. The header will cycle through 
 descending order, ascending order, and no sort. 
 
-*For example, if I wished to sort the inventory from highest to lowest prices, I would 
+>For example, if I wished to sort the inventory from highest to lowest prices, I would 
 click the header `Price` two times.*
 
-> To search by `serial number`
+**To search by `serial number`:**
 
 Select the `Search` tab from within the tab menu. While there, you can type a search term
 into the available textbox. Select the radio button `by Serial` and click the `Search` button.
@@ -78,23 +79,23 @@ Select the `Search` tab from within the tab menu. While there, you can type a se
 into the available textbox. Select the radio button `by Name` and click the `Search` button.
 The `Inventory Table` will update with all items containing your search term.
 
-*To reset the `Inventory Table`, make sure the search text box is clear and click the
+>To reset the `Inventory Table`, make sure the search text box is clear and click the
 `Search` button again. It does not matter which radio button is selected.*
 
-> To save your inventory as TSV, HTML, or JSON file
+**To save your inventory as TSV, HTML, or JSON file:**
 
-**As TSV**
+*As TSV*
 
-**As HTML**
+*As HTML*
 
-**As JSON**\
+*As JSON*\
 This program does not currently support JSON files.
 
-> To load your inventory from a TSV, HTML, or JSON file
+**To load your inventory from a TSV, HTML, or JSON file:**
 
-**As TSV**
+*As TSV*
 
-**As HTML**
+*As HTML*
 
-**As JSON**\
+*As JSON*\
 This program does not currently support JSON files.
