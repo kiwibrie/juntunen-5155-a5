@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryManagerScene">
    <children>
-      <Label alignment="CENTER" layoutX="37.0" layoutY="90.0" prefHeight="62.0" prefWidth="226.0" text="Your serial number must be ten characters long and containing no special characters." wrapText="true" />
+      <Label alignment="CENTER" layoutX="7.0" layoutY="88.0" prefHeight="68.0" prefWidth="286.0" text="Your serial number must be ten characters long and must not contain special characters." textAlignment="CENTER" wrapText="true" />
       <Label alignment="TOP_LEFT" layoutX="88.0" layoutY="23.0" prefHeight="19.0" prefWidth="174.0" text="Venti says:">
          <font>
             <Font name="System Bold" size="14.0" />

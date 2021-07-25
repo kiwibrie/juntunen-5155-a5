@@ -253,7 +253,12 @@ public class InventoryManagerScene {
         Item item = new Item(name, serial, price);
 
         try {
-
+            if(item.getSerialNumber() == null){
+                Stage stage = new Stage();
+                sceneManager.loadScene(stage, "Serial Number Error");
+                stage.show();
+                return false;
+            }
             if(!item.getSerialNumber().equals(serial)){
                 Stage stage = new Stage();
                 sceneManager.loadScene(stage, "Serial Number Error");

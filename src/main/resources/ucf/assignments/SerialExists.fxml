@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryManagerScene">
    <children>
-      <Label alignment="CENTER" layoutX="37.0" layoutY="90.0" prefHeight="62.0" prefWidth="226.0" text="The serial number you have given is already in use! Either delete the other item or give your item a unique serial number." wrapText="true" />
+      <Label alignment="CENTER" layoutX="9.0" layoutY="88.0" prefHeight="68.0" prefWidth="282.0" text="Either delete the other item or give your item a unique serial number." textAlignment="CENTER" wrapText="true" />
       <Label alignment="TOP_LEFT" layoutX="88.0" layoutY="23.0" prefHeight="19.0" prefWidth="174.0" text="Venti says:">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -20,7 +20,7 @@
             <Image url="@venti.jpg" />
          </image>
       </ImageView>
-      <Label alignment="TOP_LEFT" layoutX="98.0" layoutY="43.0" prefHeight="40.0" prefWidth="186.0" text="&quot;There seems to be an issue with your Serial Number!&quot;" wrapText="true">
+      <Label alignment="TOP_LEFT" layoutX="98.0" layoutY="43.0" prefHeight="40.0" prefWidth="186.0" text="&quot;The serial number you wish to use is already in use!&quot;" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
