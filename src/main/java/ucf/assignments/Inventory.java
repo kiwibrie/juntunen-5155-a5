@@ -38,13 +38,14 @@ public class Inventory {
         return list;
     }
 
-    public Item searchBySerial(String serial){
+    public List<Item> searchBySerial(String serial){
+        List<Item> list = new ArrayList<>();
         for (Item item : inventory) {
             if (item.getSerialNumber().equals(serial)) {
-                return item;
+                list.add(item);
             }
         }
-        return null;
+        return list;
     }
 
     public void saveTSV(){
