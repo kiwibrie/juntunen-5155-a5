@@ -33,7 +33,8 @@
     application.
     - The user shall provide the file name and file location of the file to load
     
-##How to use the program##
+
+##How to use the program
 
 **To add an inventory item:**
 
