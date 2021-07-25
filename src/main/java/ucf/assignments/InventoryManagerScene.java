@@ -203,7 +203,7 @@ public class InventoryManagerScene {
         EditItemTab.setDisable(true);
     }
 
-    //---------------------------------------------------------------------------- SEARCH TAB todo
+    //---------------------------------------------------------------------------- SEARCH TAB
     @FXML public Tab SearchTab;
     @FXML public Button SearchButton;
     @FXML public TextField SearchTextBox;
@@ -211,27 +211,30 @@ public class InventoryManagerScene {
     @FXML public RadioButton SearchNameRadio;
 
     @FXML public void SearchButtonClicked(ActionEvent actionEvent){
-        /*
-        get search term from text box
-        if (search by serial), search serial method
-        if (search by name), search name method
-         */
+        String term = SearchTextBox.getText();
+        if(SearchSerialRadio.isSelected()){
+            searchSerialConfirmed(term);
+        } else if (SearchNameRadio.isSelected()){
+            searchNameConfirmed(term);
+        }
     }
 
     public void searchSerialConfirmed(String term){
-
+        updateTableView(inventory.searchBySerial(term));
+        SearchTextBox.clear();
     }
 
     public void searchNameConfirmed(String term){
-
+        updateTableView(inventory.searchByName(term));
+        SearchTextBox.clear();
     }
 
     @FXML public void SearchSerialRadioClicked(ActionEvent actionEvent){
-        //if this clicked, turn off other
+        SearchNameRadio.setSelected(false);
     }
 
     @FXML public void SearchNameRadioClicked(ActionEvent actionEvent){
-        //if this clicked, turn off other
+        SearchSerialRadio.setSelected(false);
     }
 
     //---------------------------------------------------------------------------- INVENTORY TABLE todo
