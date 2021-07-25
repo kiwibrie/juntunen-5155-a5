@@ -16,7 +16,9 @@ public class Inventory {
     }
 
     public void addItem(String name, String serial, double value){
-        inventoryList.add(new Item(name, serial, value));
+        if(!duplicateSerialExists(serial)){
+            inventoryList.add(new Item(name, serial, value));
+        }
     }
 
     public void deleteItem(Item item){
@@ -43,6 +45,16 @@ public class Inventory {
         return list;
     }
 
+    public boolean duplicateSerialExists(String serial){
+        List<Item> list = new ArrayList<>();
+        for (Item item : inventoryList) {
+            if (item.getSerialNumber().equals(serial)) {
+                list.add(item);
+            }
+        }
+        return list.size() >= 1;
+    }
+
     public void saveTSV(){
         //todo saveTSV
     }
@@ -59,5 +71,11 @@ public class Inventory {
         //todo loadHTML
     }
 
-    //todo json
+    public void saveJSON(){
+
+    }
+
+    public void loadJSON(){
+
+    }
 }
