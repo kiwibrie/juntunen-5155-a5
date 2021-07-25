@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 public class Item {
     String name;
     String serialnumber;
-    BigDecimal value;
+    double value;
 
-    public Item(String name, String serialnumber, BigDecimal value){
+    public Item(String name, String serialnumber, double value){
         setName(name);
         setSerialNumber(serialnumber);
         setValue(value);
@@ -40,11 +40,11 @@ public class Item {
         return serialnumber;
     }
 
-    public void setValue(BigDecimal value){
+    public void setValue(double value){
         this.value = value;
     }
 
-    public BigDecimal getValue(){
+    public double getValue(){
         return value;
     }
 

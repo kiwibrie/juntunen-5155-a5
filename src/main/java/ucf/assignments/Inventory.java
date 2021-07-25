@@ -16,7 +16,7 @@ public class Inventory {
         this.inventory = new ArrayList<>();
     }
 
-    public void addItem(String name, String serial, BigDecimal value){
+    public void addItem(String name, String serial, double value){
         inventory.add(new Item(name, serial, value));
     }
 
