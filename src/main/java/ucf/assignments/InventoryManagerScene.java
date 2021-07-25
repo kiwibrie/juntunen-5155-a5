@@ -6,6 +6,7 @@ package ucf.assignments;
  */
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class InventoryManagerScene {
@@ -109,7 +112,7 @@ public class InventoryManagerScene {
 
         EditSerialTextBox.setText(inventory.inventoryList.get(this_index).getSerialNumber());
         EditNameTextBox.setText(inventory.inventoryList.get(this_index).getName());
-        EditPriceTextBox.setText(String.valueOf(inventory.inventoryList.get(this_index).getValue()));
+        EditPriceTextBox.setText(String.valueOf(inventory.inventoryList.get(this_index).getValue()).substring(1));
 
         inventory.inventoryList.remove(this_index);
         EditItemTab.setDisable(false);
@@ -125,7 +128,7 @@ public class InventoryManagerScene {
         updateTableView(inventory.inventoryList);
     }
 
-    //---------------------------------------------------------------------------- ADD ITEM TAB
+    //---------------------------------------------------------------------------- NEW ITEM TAB
     @FXML public Tab NewItemTab;
     @FXML public Button AddItemButton;
     @FXML public TextField AddSerialTextBox;
@@ -141,20 +144,24 @@ public class InventoryManagerScene {
     }
 
     public void addItemConfirmed() throws IOException {
-        String serial = AddSerialTextBox.getText();
-        String name = AddNameTextBox.getText();
-        double value = Double.parseDouble(AddPriceTextBox.getText());
+        try{
+            String serial = AddSerialTextBox.getText();
+            String name = AddNameTextBox.getText();
+            double value = Double.parseDouble(AddPriceTextBox.getText());
 
-        if(!isItemValid(name, serial, value)){
-            return;
+            if(!isItemValid(name, serial, value)){
+                return;
+            }
+
+            inventory.addItem(name, serial, value);
+            updateTableView(inventory.inventoryList);
+
+            AddSerialTextBox.clear();
+            AddNameTextBox.clear();
+            AddPriceTextBox.clear();
+        } catch (NumberFormatException e) {
+            callError("Item Price Error");
         }
-
-        inventory.addItem(name, serial, value);
-        updateTableView(inventory.inventoryList);
-
-        AddSerialTextBox.clear();
-        AddNameTextBox.clear();
-        AddPriceTextBox.clear();
     }
 
     //---------------------------------------------------------------------------- EDIT ITEM TAB
@@ -173,21 +180,25 @@ public class InventoryManagerScene {
     }
 
     public void editItemConfirmed() throws IOException {
-        String serial = EditSerialTextBox.getText();
-        String name = EditNameTextBox.getText();
-        double value = Double.parseDouble(EditPriceTextBox.getText());
+        try{
+            String serial = EditSerialTextBox.getText();
+            String name = EditNameTextBox.getText();
+            double value = Double.parseDouble(EditPriceTextBox.getText());
 
-        if(!isItemValid(name, serial, value)){
-            return;
+            if(!isItemValid(name, serial, value)){
+                return;
+            }
+
+            inventory.addItem(name, serial, value);
+            updateTableView(inventory.inventoryList);
+
+            EditItemTab.setDisable(true);
+            EditSerialTextBox.clear();
+            EditNameTextBox.clear();
+            EditPriceTextBox.clear();
+        } catch (NumberFormatException e) {
+            callError("Item Price Error");
         }
-
-        inventory.addItem(name, serial, value);
-        updateTableView(inventory.inventoryList);
-
-        EditItemTab.setDisable(true);
-        EditSerialTextBox.clear();
-        EditNameTextBox.clear();
-        EditPriceTextBox.clear();
     }
 
     //---------------------------------------------------------------------------- SEARCH TAB
@@ -252,47 +263,43 @@ public class InventoryManagerScene {
     public boolean isItemValid(String name, String serial, double price){
         Item item = new Item(name, serial, price);
 
-        try {
-            if(item.getSerialNumber() == null){
-                Stage stage = new Stage();
-                sceneManager.loadScene(stage, "Serial Number Error");
-                stage.show();
-                return false;
-            }
-            if(!item.getSerialNumber().equals(serial)){
-                Stage stage = new Stage();
-                sceneManager.loadScene(stage, "Serial Number Error");
-                stage.show();
-                return false;
-            }
-            if(inventory.searchBySerial(serial).size() >= 1){
-                Stage stage = new Stage();
-                sceneManager.loadScene(stage, "Serial Number Exists Error");
-                stage.show();
-                return false;
-            }
+        if(item.getSerialNumber() == null){
+            callError("Serial Number Error");
+            return false;
+        }
+        if(!item.getSerialNumber().equals(serial)){
+            callError("Serial Number Error");
+            return false;
+        }
+        if(inventory.searchBySerial(serial).size() >= 1){
+            callError("Serial Number Exists Error");
+            return false;
+        }
 
-            if(!item.getName().equals(name)){
-                Stage stage = new Stage();
-                sceneManager.loadScene(stage, "Item Name Error");
-                stage.show();
-                return false;
-            }
+        if(item.getName() == null){
+            callError("Item Name Error");
+            return false;
+        }
+        if(!item.getName().equals(name)){
+            callError("Item Name Error");
+            return false;
+        }
 
-            if(item.getValue() != price){
-                Stage stage = new Stage();
-                sceneManager.loadScene(stage, "Item Price Error");
-                stage.show();
-                return false;
-            }
+        if(String.valueOf(price).equals(item.getValue())){
+            callError("Item Price Error");
+            return false;
+        }
 
-            return true;
+        return true;
+    }
+
+    public void callError(String key){
+        try{
+            Stage stage = new Stage();
+            sceneManager.loadScene(stage, key);
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return false;
     }
-
-
 }

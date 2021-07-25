@@ -19,10 +19,6 @@ public class Inventory {
         inventoryList.add(new Item(name, serial, value));
     }
 
-    //todo getItem? getItemByName
-    //getItemBySerial
-    //getItemByIndex
-
     public void deleteItem(Item item){
         inventoryList.remove(item);
     }

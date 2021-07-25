@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class Item {
     String name;
     String serialnumber;
-    double value;
+    String value;
 
     public Item(String name, String serialnumber, double value){
         setName(name);
@@ -40,10 +40,10 @@ public class Item {
     }
 
     public void setValue(double value){
-        this.value = value;
+        this.value = formatValue(value);
     }
 
-    public double getValue(){
+    public String getValue(){
         return value;
     }
 
@@ -59,5 +59,9 @@ public class Item {
             return !matchSpecial.find();
         }
         return false;
+    }
+
+    private String formatValue(double value){
+        return String.format("$%.2f", value);
     }
 }

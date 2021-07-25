@@ -54,7 +54,7 @@
                             <Font name="System Italic" size="12.0" />
                         </font>
                     </TextField>
-                    <TextField fx:id="AddPriceTextBox" layoutX="416.0" layoutY="11.0" prefHeight="26.0" prefWidth="96.0" promptText="\$XXX.XX">
+                    <TextField fx:id="AddPriceTextBox" layoutX="416.0" layoutY="11.0" prefHeight="26.0" prefWidth="96.0" promptText="XXX.XX">
                         <font>
                             <Font name="System Italic" size="12.0" />
                         </font>
@@ -74,7 +74,7 @@
                             <Font name="System Italic" size="12.0" />
                         </font>
                     </TextField>
-                    <TextField fx:id="EditPriceTextBox" layoutX="416.0" layoutY="11.0" prefHeight="26.0" prefWidth="96.0" promptText="\$XXX.XX">
+                    <TextField fx:id="EditPriceTextBox" layoutX="416.0" layoutY="11.0" prefHeight="26.0" prefWidth="96.0" promptText="XXX.XX">
                         <font>
                             <Font name="System Italic" size="12.0" />
                         </font>

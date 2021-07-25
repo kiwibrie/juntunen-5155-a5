@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryManagerScene">
    <children>
-      <Label alignment="CENTER" layoutX="4.0" layoutY="88.0" prefHeight="68.0" prefWidth="291.0" text="Your item's price must be a number." wrapText="true" />
+      <Label alignment="CENTER" layoutX="4.0" layoutY="88.0" prefHeight="68.0" prefWidth="291.0" text="Your item's price must be a number. (Remove the currency sign, if one exists)" wrapText="true" />
       <Label alignment="TOP_LEFT" layoutX="88.0" layoutY="23.0" prefHeight="19.0" prefWidth="174.0" text="Venti says:">
          <font>
             <Font name="System Bold" size="14.0" />
