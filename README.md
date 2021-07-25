@@ -34,7 +34,7 @@
     - The user shall provide the file name and file location of the file to load
     
 
-##How to use the program
+#How to use the program
 
 **To add an inventory item:**
 
@@ -43,10 +43,12 @@ In the `New Item` tab, fill out the `serial number`, `item name`, and `price` te
 
 *If an error occurs, read the error text and adjust your input accordingly.*
 
+
 **To remove an inventory item:**
 
 Select the item you wish to remove in the `Inventory Table`, then navigate to the `Edit` Menu in the 
 top left of your window. From the dropdown, select `Delete Selected Item`.
+
 
 **To edit the values of an existing inventory item:**
 
@@ -57,6 +59,7 @@ button on the right.
 
 *If an error occurs, read the error text and adjust your input accordingly.*
 
+
 **To sort the items in the inventory:**
 
 Click the header of the value you wish to sort by. The header will cycle through 
@@ -64,6 +67,7 @@ descending order, ascending order, and no sort.
 
 *For example, if I wished to sort the inventory from highest to lowest prices, I would 
 click the header `Price` two times.*
+
 
 **To search by `serial number`:**
 
@@ -74,6 +78,7 @@ The `Inventory Table` will update with all items containing your search term.
 *To reset the `Inventory Table`, make sure the search text box is clear and click the
 `Search` button again. It does not matter which radio button is selected.*
 
+
 **To search by `name`:**
 
 Select the `Search` tab from within the tab menu. While there, you can type a search term
@@ -83,6 +88,7 @@ The `Inventory Table` will update with all items containing your search term.
 *To reset the `Inventory Table`, make sure the search text box is clear and click the
 `Search` button again. It does not matter which radio button is selected.*
 
+
 **To save your inventory as TSV, HTML, or JSON file:**
 
 *As TSV*
@@ -90,7 +96,9 @@ The `Inventory Table` will update with all items containing your search term.
 *As HTML*
 
 *As JSON*\
+
 This program does not currently support JSON files.
+
 
 **To load your inventory from a TSV, HTML, or JSON file:**
 
@@ -99,4 +107,5 @@ This program does not currently support JSON files.
 *As HTML*
 
 *As JSON*\
+
 This program does not currently support JSON files.
