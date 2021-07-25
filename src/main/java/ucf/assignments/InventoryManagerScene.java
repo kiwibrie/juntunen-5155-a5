@@ -6,9 +6,12 @@ package ucf.assignments;
  */
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -141,25 +144,17 @@ public class InventoryManagerScene {
         String serial = AddSerialTextBox.getText();
         String name = AddNameTextBox.getText();
         double value = Double.parseDouble(AddPriceTextBox.getText());
-        Item item = new Item(name, serial, value);
 
-        if(!item.getSerialNumber().equals(serial)){
-            Stage stage = new Stage();
-            sceneManager.loadScene(stage, "Serial Number Error");
-            stage.show();
-        }
-        if(!item.getName().equals(name)){
-            Stage stage = new Stage();
-            sceneManager.loadScene(stage, "Item Name Error");
-            stage.show();
-        }
-        if(item.getValue() != value){
-            Stage stage = new Stage();
-            sceneManager.loadScene(stage, "Item Price Error");
-            stage.show();
+        if(!isItemValid(name, serial, value)){
+            return;
         }
 
+        inventory.addItem(name, serial, value);
         updateTableView(inventory.inventoryList);
+
+        AddSerialTextBox.clear();
+        AddNameTextBox.clear();
+        AddPriceTextBox.clear();
     }
 
     //---------------------------------------------------------------------------- EDIT ITEM TAB
@@ -181,26 +176,18 @@ public class InventoryManagerScene {
         String serial = EditSerialTextBox.getText();
         String name = EditNameTextBox.getText();
         double value = Double.parseDouble(EditPriceTextBox.getText());
-        Item item = new Item(name, serial, value);
 
-        if(!item.getSerialNumber().equals(serial)){
-            Stage stage = new Stage();
-            sceneManager.loadScene(stage, "Serial Number Error");
-            stage.show();
-        }
-        if(!item.getName().equals(name)){
-            Stage stage = new Stage();
-            sceneManager.loadScene(stage, "Item Name Error");
-            stage.show();
-        }
-        if(item.getValue() != value){
-            Stage stage = new Stage();
-            sceneManager.loadScene(stage, "Item Price Error");
-            stage.show();
+        if(!isItemValid(name, serial, value)){
+            return;
         }
 
+        inventory.addItem(name, serial, value);
         updateTableView(inventory.inventoryList);
+
         EditItemTab.setDisable(true);
+        EditSerialTextBox.clear();
+        EditNameTextBox.clear();
+        EditPriceTextBox.clear();
     }
 
     //---------------------------------------------------------------------------- SEARCH TAB
@@ -239,9 +226,68 @@ public class InventoryManagerScene {
 
     //---------------------------------------------------------------------------- INVENTORY TABLE todo
     @FXML TableView<Item> InventoryTable;
+    @FXML TableColumn<String, String> SerialNumberColumn;
+    @FXML TableColumn<String, String> ItemNameColumn;
+    @FXML TableColumn<String, String> PriceColumn;
 
     public void updateTableView(List<Item> updatedList){
-        //make given list observable
-        //update table with this list
+        ObservableList<Item> itemObservableList = FXCollections.observableList(updatedList);
+
+        InventoryTable.setItems(itemObservableList);
+        SerialNumberColumn.setCellValueFactory(new PropertyValueFactory<>("SerialNumber"));
+        ItemNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        PriceColumn.setCellValueFactory(new PropertyValueFactory<>("Value"));
     }
+
+    //---------------------------------------------------------------------------- ERROR SCENES
+    @FXML public Button ErrorOKButton;
+
+    @FXML public void ErrorOKClicked(ActionEvent actionEvent) {
+        Stage stage = (Stage) ErrorOKButton.getScene().getWindow();
+        stage.close();
+    }
+
+    //---------------------------------------------------------------------------- MISC
+
+    public boolean isItemValid(String name, String serial, double price){
+        Item item = new Item(name, serial, price);
+
+        try {
+
+            if(!item.getSerialNumber().equals(serial)){
+                Stage stage = new Stage();
+                sceneManager.loadScene(stage, "Serial Number Error");
+                stage.show();
+                return false;
+            }
+            if(inventory.searchBySerial(serial).size() >= 1){
+                Stage stage = new Stage();
+                sceneManager.loadScene(stage, "Serial Number Exists Error");
+                stage.show();
+                return false;
+            }
+
+            if(!item.getName().equals(name)){
+                Stage stage = new Stage();
+                sceneManager.loadScene(stage, "Item Name Error");
+                stage.show();
+                return false;
+            }
+
+            if(item.getValue() != price){
+                Stage stage = new Stage();
+                sceneManager.loadScene(stage, "Item Price Error");
+                stage.show();
+                return false;
+            }
+
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
 }

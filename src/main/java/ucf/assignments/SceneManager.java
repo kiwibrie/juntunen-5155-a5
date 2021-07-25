@@ -21,14 +21,15 @@ public class SceneManager {
         this.scenelist = new HashMap<>();
         scenelist.put("InventoryManager", "InventoryManager.fxml");
         scenelist.put("Serial Number Error", "SerialError.fxml");
+        scenelist.put("Serial Number Exists Error", "SerialExists.fxml");
         scenelist.put("Item Name Error", "NameError.fxml");
         scenelist.put("Item Price Error", "PriceError.fxml");
     }
 
     public void loadScene(Stage stage, String key) throws IOException {
         Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource(scenelist.get(key)))));
-        stage.setResizable(false);
-        stage.setTitle(key);
         stage.setScene(scene);
+        stage.setTitle(key);
+        stage.setResizable(false);
     }
 }

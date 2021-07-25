@@ -25,6 +25,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="ErrorSerialOK" layoutX="106.0" layoutY="157.0" mnemonicParsing="false" onAction="#ErrorOKClicked" prefHeight="26.0" prefWidth="88.0" text="OK" />
+      <Button fx:id="ErrorOKButton" layoutX="106.0" layoutY="157.0" mnemonicParsing="false" onAction="#ErrorOKClicked" prefHeight="26.0" prefWidth="88.0" text="OK" />
    </children>
 </AnchorPane>

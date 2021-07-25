@@ -63,7 +63,7 @@
             </Tab>
             <Tab fx:id="EditItemTab" closable="false" disable="true" text="Edit Item">
                 <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="74.0" prefWidth="600.0">
-                    <Button fx:id="EditItemButton" layoutX="520.0" layoutY="11.0" mnemonicParsing="false" onAction="#EditItemClicked" prefHeight="25.6" prefWidth="65.6" text="Edit Item" textAlignment="CENTER" />
+                    <Button fx:id="EditItemButton" layoutX="534.0" layoutY="11.0" mnemonicParsing="false" onAction="#EditItemClicked" prefHeight="25.6" prefWidth="65.6" text="Edit Item" textAlignment="CENTER" />
                     <TextField fx:id="EditSerialTextBox" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="116.0" promptText="Serial Number...">
                         <font>
                             <Font name="System Italic" size="12.0" />
@@ -90,15 +90,15 @@
                     </TextField>
                     <RadioButton fx:id="SearchSerialRadio" layoutX="341.0" layoutY="14.0" mnemonicParsing="false" onAction="#SearchSerialRadioClicked" selected="true" text="by Serial" />
                     <RadioButton fx:id="SearchNameRadio" layoutX="431.0" layoutY="14.0" mnemonicParsing="false" onAction="#SearchNameRadioClicked" text="by Name" />
-                    <Button fx:id="SearchButton" layoutX="505.0" layoutY="10.0" mnemonicParsing="false" onAction="#SearchButtonClicked" prefHeight="26.0" prefWidth="90.0" text="Search" />
+                    <Button fx:id="SearchButton" layoutX="509.0" layoutY="10.0" mnemonicParsing="false" onAction="#SearchButtonClicked" prefHeight="26.0" prefWidth="90.0" text="Search" />
                 </AnchorPane>
             </Tab>
         </TabPane>
         <TableView fx:id="InventoryTable">
             <columns>
-                <TableColumn editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" resizable="false" text="Serial Number" />
-                <TableColumn editable="false" maxWidth="375.0" minWidth="375.0" prefWidth="375.0" text="Item Name" />
-                <TableColumn editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Price" />
+                <TableColumn fx:id="SerialNumberColumn" editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" resizable="false" text="Serial Number" />
+                <TableColumn fx:id="ItemNameColumn" editable="false" maxWidth="375.0" minWidth="375.0" prefWidth="375.0" text="Item Name" />
+                <TableColumn fx:id="PriceColumn" editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Price" />
             </columns>
         </TableView>
     </VBox>

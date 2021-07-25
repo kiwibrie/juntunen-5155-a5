@@ -6,9 +6,13 @@ package ucf.assignments;
  */
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class InventoryManager extends Application {
 
@@ -19,10 +23,15 @@ public class InventoryManager extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{
-            InventoryManagerScene scene = new InventoryManagerScene();
-            Stage stage = new Stage();
-            scene.sceneManager.loadScene(stage, "InventoryManager");
-            stage.show();
+            InventoryManagerScene controller = new InventoryManagerScene();
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(controller.sceneManager.scenelist.get("InventoryManager"))));
+            Scene scene = new Scene(root);
+
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.setTitle("InventoryManager");
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
