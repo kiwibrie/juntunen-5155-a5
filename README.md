@@ -1,6 +1,9 @@
 # Inventory Manager - Assignment 5
 UCF COP 3330 Summer 2021 with Hollander
 
+![A picture of Venti from Genshin Impact whispering and winking. 
+This is kiwibrie's profile photo as of 25 July 2021.] (./resources/ucf/assignments/venti.png "Ehe!")
+
 ## Requirements of the program
 1. The user shall interact with the application through a Graphical User Interface
 2. The user shall be able to store at least 100 inventory items
