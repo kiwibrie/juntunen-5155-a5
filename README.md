@@ -2,7 +2,8 @@
 UCF COP 3330 Summer 2021 with Hollander
 
 ![A picture of Venti from Genshin Impact whispering and winking. 
-This is kiwibrie's profile photo as of 25 July 2021.] (./venti4credibility.jpg "Ehe!")
+This is kiwibrie's profile photo as of 25 July 2021.] 
+(https://github.com/kiwibrie/juntunen-5155-a5/blob/master/src/main/resources/ucf/assignments/venti.jpg "Ehe!")
 
 ## Requirements of the program
 1. The user shall interact with the application through a Graphical User Interface
