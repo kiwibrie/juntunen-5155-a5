@@ -5,21 +5,30 @@ package ucf.assignments;
  *  Copyright 2021 Brianne Juntunen
  */
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SceneManager {
-    Map<String, String> scene;
+    Map<String, String> scenelist;
 
     public SceneManager(){
-        this.scene = new HashMap<>();
-        scene.put("Main Scene", "InventoryManager.fxml");
-        scene.put("Error Scene", "Error.fxml");
+        this.scenelist = new HashMap<>();
+        scenelist.put("InventoryManager", "InventoryManager.fxml");
+        scenelist.put("Serial Number Error", "SerialError.fxml");
+        scenelist.put("Item Name Error", "NameError.fxml");
+        scenelist.put("Item Price Error", "PriceError.fxml");
     }
 
-    public void loadScene(String key){
-        //todo loadScene
+    public void loadScene(Stage stage, String key) throws IOException {
+        Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource(scenelist.get(key)))));
+        stage.setResizable(false);
+        stage.setTitle(key);
+        stage.setScene(scene);
     }
 }
