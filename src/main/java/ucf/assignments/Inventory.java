@@ -110,14 +110,14 @@ public class Inventory {
         if(reader.nextLine().equals("<table style=\"width:100%\">")){
             reader.nextLine();
             while(reader.hasNextLine()){
-                if(reader.nextLine().equals("</table>")){
+                String[] input = reader.nextLine().split("</td>");
+                if(input.length == 1){
                     break;
                 }
 
-                String[] input = reader.nextLine().split("/td>");
-                String formatted_name = input[0].substring(7, (input[1].length() -1));
-                String formatted_serial = input[1].substring(3, 14);
-                double formatted_value = Double.parseDouble(input[2].substring(5, input[2].length() -1));
+                String formatted_name = input[0].substring(8);
+                String formatted_serial = input[1].substring(4);
+                double formatted_value = Double.parseDouble(input[2].substring(5));
                 new_inventory.addItem(formatted_name, formatted_serial, formatted_value);
             }
             this.inventoryList = new_inventory.inventoryList;
