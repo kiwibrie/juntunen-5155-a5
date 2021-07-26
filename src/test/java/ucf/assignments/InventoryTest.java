@@ -14,6 +14,7 @@ class InventoryTest {
         assertEquals("New Item", inventory.inventoryList.get(0).name);
         assertEquals("0123456789", inventory.inventoryList.get(0).serialnumber);
         assertEquals("$10.99", inventory.inventoryList.get(0).value);
+        assertEquals(1, inventory.inventoryList.size());
     }
 
     @Test

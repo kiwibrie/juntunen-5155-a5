@@ -19,16 +19,8 @@
     <VBox layoutX="191.0" layoutY="113.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <MenuBar prefHeight="26.0" prefWidth="600.0">
             <Menu mnemonicParsing="false" text="File">
-                <Menu mnemonicParsing="false" text="Save">
-                    <MenuItem fx:id="SaveTSV" mnemonicParsing="false" onAction="#SaveTSVClicked" text="Save as TSV" />
-                    <MenuItem fx:id="SaveHTML" mnemonicParsing="false" onAction="#SaveHTMLClicked" text="Save as HTML" />
-                    <MenuItem fx:id="SaveJSON" disable="true" mnemonicParsing="false" onAction="#SaveJSONClicked" text="Save as JSON" />
-                </Menu>
-                <Menu mnemonicParsing="false" text="Load">
-                    <MenuItem fx:id="LoadTSV" mnemonicParsing="false" onAction="#LoadTSVClicked" text="Load TSV" />
-                    <MenuItem fx:id="LoadHTML" mnemonicParsing="false" onAction="#LoadHTMLClicked" text="Load HTML" />
-                    <MenuItem fx:id="LoadJSON" disable="true" mnemonicParsing="false" onAction="#LoadJSONClicked" text="Load JSON" />
-                </Menu>
+            <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#SaveClicked" text="Save..." />
+            <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#LoadClicked" text="Load..." />
                 <SeparatorMenuItem mnemonicParsing="false" />
                 <MenuItem fx:id="CloseMenuItem" mnemonicParsing="false" onAction="#CloseSelected" text="Close" />
             </Menu>

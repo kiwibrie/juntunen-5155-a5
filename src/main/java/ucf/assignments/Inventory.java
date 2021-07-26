@@ -5,8 +5,12 @@ package ucf.assignments;
  *  Copyright 2021 Brianne Juntunen
  */
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Inventory {
     List<Item> inventoryList;
@@ -55,27 +59,48 @@ public class Inventory {
         return list.size() >= 1;
     }
 
-    public void saveTSV(){
-        //todo saveTSV
+    public void saveTSV(File file) throws IOException {
+        FileWriter writer = new FileWriter(file);
+        writer.write("name\tserial\tvalue\n");
+
+        for (Item item : inventoryList) {
+            writer.write(item.getName() + "\t");
+            writer.write(item.getSerialNumber() + "\t");
+            writer.write(item.getValue() + "\t");
+            writer.write("\n");
+        }
+
+        writer.close();
     }
 
-    public void loadTSV(){
-        //todo loadTSV
+    public void loadTSV(File file) throws IOException {
+        Scanner reader = new Scanner(file);
+        Inventory new_inventory = new Inventory();
+
+        if(reader.nextLine().equals("name\tserial\tvalue")){
+            while(reader.hasNextLine()){
+                String[] input = reader.nextLine().split("\t");
+                double formatted_price = Double.parseDouble(input[2].substring(1));
+                new_inventory.addItem(input[0], input[1], formatted_price);
+            }
+            this.inventoryList = new_inventory.inventoryList;
+        }
+        reader.close();
     }
 
-    public void saveHTML(){
+    public void saveHTML(File file){
         //todo saveHTML
     }
     
-    public void loadHTML(){
+    public void loadHTML(File file){
         //todo loadHTML
     }
 
-    public void saveJSON(){
+    public void saveJSON(File file){
 
     }
 
-    public void loadJSON(){
+    public void loadJSON(File file){
 
     }
 }

@@ -14,6 +14,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -27,65 +31,105 @@ public class InventoryManagerScene {
     }
 
     //---------------------------------------------------------------------------- FILE MENU todo
-    @FXML public MenuItem SaveTSV;
-    @FXML public MenuItem SaveHTML;
-    @FXML public MenuItem SaveJSON;
-    @FXML public MenuItem LoadTSV;
-    @FXML public MenuItem LoadHTML;
-    @FXML public MenuItem LoadJSON;
+    @FXML public MenuItem Save;
+    @FXML public MenuItem Load;
     @FXML public MenuItem CloseMenuItem;
 
-    @FXML public void SaveTSVClicked(ActionEvent actionEvent){
-        //path = file chooser stuff
-        saveTSVFile();
+    @FXML public void SaveClicked(ActionEvent actionEvent){
+        try {
+            File save_file = openSaveFileChooser();
+            String extension = getFileExtension(save_file);
+
+            switch (extension) {
+                case ".txt":
+                    saveTSVFile(save_file);
+                    break;
+                case ".html":
+                    saveHTMLFile(save_file);
+                    break;
+                case ".json":
+                    saveJSONFile(save_file);
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void saveTSVFile(){
-        //include String path in parameter
-        //tab separated values... idk yet
+    public void saveTSVFile(File file) throws IOException {
+        inventory.saveTSV(file);
     }
 
-    @FXML public void SaveHTMLClicked(ActionEvent actionEvent){
-        //path = file chooser stuff
-        saveHTMLFile();
+    public void saveHTMLFile(File file){
+        inventory.saveHTML(file);
     }
 
-    public void saveHTMLFile(){
-        //html... also idk
+    public void saveJSONFile(File file){
+        inventory.saveJSON(file);
     }
 
-    @FXML public void SaveJSONClicked(ActionEvent actionEvent){
-        //save as json method call DISABLED
+    @FXML public void LoadClicked(ActionEvent actionEvent){
+        try {
+            File load_file = openLoadFileChooser();
+            String extension = getFileExtension(load_file);
+
+            switch (extension) {
+                case ".txt":
+                    loadTSVFile(load_file);
+                    break;
+                case ".html":
+                    loadHTMLFile(load_file);
+                    break;
+                case ".json":
+                    loadJSONFile(load_file);
+                    break;
+            }
+            updateTableView(inventory.inventoryList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void saveJSONFile(){
-        //to work on but i dont plan to do json
+    public void loadTSVFile(File file) throws IOException {
+        inventory.loadTSV(file);
     }
 
-    @FXML public void LoadTSVClicked(ActionEvent actionEvent){
-        //path = file chooser stuff
-        loadTSVFile();
+    public void loadHTMLFile(File file){
+        inventory.loadHTML(file);
     }
 
-    public void loadTSVFile(){
-        //load a tsv... idk
+    public void loadJSONFile(File file){
+        inventory.loadJSON(file);
     }
 
-    @FXML public void LoadHTMLClicked(ActionEvent actionEvent){
-        //path = file chooser stuff
-        loadHTMLFile();
+    public File openSaveFileChooser() throws IOException {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "(*.txt), (*.html)", "txt", "html");
+        chooser.setFileFilter(filter);
+        chooser.showSaveDialog(chooser);
+
+        chooser.getSelectedFile().createNewFile();
+        return chooser.getSelectedFile();
     }
 
-    public void loadHTMLFile(){
-        //load an html file i guess
+    public File openLoadFileChooser() throws IOException {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "(*.txt), (*.html)", "txt", "html");
+        chooser.setFileFilter(filter);
+        chooser.showOpenDialog(chooser);
+
+        return chooser.getSelectedFile();
     }
 
-    @FXML public void LoadJSONClicked(ActionEvent actionEvent){
-        //load JSON file method call DISABLED
-    }
-
-    public void loadJSONFile(){
-        //disabled too
+    private String getFileExtension(File file){
+        String name = file.getName();
+        int lastIndexOf = name.lastIndexOf(".");
+        if (lastIndexOf == -1) {
+            return ""; // empty extension
+        }
+        return name.substring(lastIndexOf);
     }
 
     @FXML public void CloseSelected(ActionEvent actionEvent){
