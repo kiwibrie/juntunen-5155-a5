@@ -53,6 +53,7 @@ public class InventoryManagerScene {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            callError("Save Inventory Failure");
         }
     }
 
@@ -87,6 +88,7 @@ public class InventoryManagerScene {
             updateTableView(inventory.inventoryList);
         } catch (IOException e) {
             e.printStackTrace();
+            callError("Load Inventory Failure");
         }
     }
 

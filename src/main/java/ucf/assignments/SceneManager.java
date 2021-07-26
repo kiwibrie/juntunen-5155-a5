@@ -24,6 +24,8 @@ public class SceneManager {
         scenelist.put("Serial Number Exists Error", "SerialExists.fxml");
         scenelist.put("Item Name Error", "NameError.fxml");
         scenelist.put("Item Price Error", "PriceError.fxml");
+        scenelist.put("Save Inventory Failure", "SaveError.fxml");
+        scenelist.put("Load Inventory Failure", "LoadError.fxml");
     }
 
     public void loadScene(Stage stage, String key) throws IOException {
