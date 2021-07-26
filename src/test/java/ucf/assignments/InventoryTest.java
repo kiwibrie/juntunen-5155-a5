@@ -1,5 +1,10 @@
 package ucf.assignments;
 
+/*
+ *  UCF COP3330 Summer 2021 Assignment 5 Solution
+ *  Copyright 2021 Brianne Juntunen
+ */
+
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
