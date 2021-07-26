@@ -2,6 +2,9 @@ package ucf.assignments;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InventoryTest {
@@ -82,11 +85,30 @@ class InventoryTest {
 
     @Test
     void saveTSV() {
-        //todo save and load tests
+        try{
+            Inventory inventory = new Inventory();
+            inventory.addItem("New Item", "0123456789", 10.99);
+            inventory.addItem("Another Item", "XXXXXXXXXX", 10.99);
+            inventory.addItem("Another New Item", "XXXXX12345", 10.99);
+
+            File file = new File("Downloads/saveTSVtest.txt");
+            inventory.saveTSV(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void loadTSV() {
+        try{
+            Inventory inventory = new Inventory();
+            File file = new File("Downloads/test list.txt");
+            inventory.loadTSV(file);
+
+            assertEquals(3, inventory.inventoryList.size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
