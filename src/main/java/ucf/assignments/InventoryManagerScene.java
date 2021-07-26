@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -61,11 +60,11 @@ public class InventoryManagerScene {
         inventory.saveTSV(file);
     }
 
-    public void saveHTMLFile(File file){
+    public void saveHTMLFile(File file) throws IOException {
         inventory.saveHTML(file);
     }
 
-    public void saveJSONFile(File file){
+    public void saveJSONFile(File file) throws IOException {
         inventory.saveJSON(file);
     }
 
@@ -96,11 +95,11 @@ public class InventoryManagerScene {
         inventory.loadTSV(file);
     }
 
-    public void loadHTMLFile(File file){
+    public void loadHTMLFile(File file) throws IOException {
         inventory.loadHTML(file);
     }
 
-    public void loadJSONFile(File file){
+    public void loadJSONFile(File file) throws IOException {
         inventory.loadJSON(file);
     }
 

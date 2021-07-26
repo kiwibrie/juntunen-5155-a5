@@ -5,8 +5,6 @@ package ucf.assignments;
  *  Copyright 2021 Brianne Juntunen
  */
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,8 +59,8 @@ public class Inventory {
 
     public void saveTSV(File file) throws IOException {
         FileWriter writer = new FileWriter(file);
-        writer.write("name\tserial\tvalue\n");
 
+        writer.write("name\tserial\tvalue\n");
         for (Item item : inventoryList) {
             writer.write(item.getName() + "\t");
             writer.write(item.getSerialNumber() + "\t");
@@ -88,12 +86,43 @@ public class Inventory {
         reader.close();
     }
 
-    public void saveHTML(File file){
-        //todo saveHTML
+    public void saveHTML(File file) throws IOException {
+        FileWriter writer = new FileWriter(file);
+
+        writer.write("<table style=\"width:100%\">\n");
+        writer.write("<tr><th>Name</th><th>Serial Number</th><th>Value</th></tr>\n");
+        for (Item item : inventoryList) {
+            writer.write("<tr>");
+            writer.write("<td>"+ item.getName() +"</td>");
+            writer.write("<td>"+ item.getSerialNumber() +"</td>");
+            writer.write("<td>"+ item.getValue() +"</td>");
+            writer.write("</tr>\n");
+        }
+        writer.write("</table>");
+
+        writer.close();
     }
     
-    public void loadHTML(File file){
-        //todo loadHTML
+    public void loadHTML(File file) throws FileNotFoundException {
+        Scanner reader = new Scanner(file);
+        Inventory new_inventory = new Inventory();
+
+        if(reader.nextLine().equals("<table style=\"width:100%\">")){
+            reader.nextLine();
+            while(reader.hasNextLine()){
+                if(reader.nextLine().equals("</table>")){
+                    break;
+                }
+
+                String[] input = reader.nextLine().split("/td>");
+                String formatted_name = input[0].substring(7, (input[1].length() -1));
+                String formatted_serial = input[1].substring(3, 14);
+                double formatted_value = Double.parseDouble(input[2].substring(5, input[2].length() -1));
+                new_inventory.addItem(formatted_name, formatted_serial, formatted_value);
+            }
+            this.inventoryList = new_inventory.inventoryList;
+        }
+        reader.close();
     }
 
     public void saveJSON(File file){
